@@ -12,19 +12,14 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.13",
     "frontend": "file:",
-<<<<<<< HEAD
     "prop-types": "^15.8.1",
     "proptype": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-scrollbar": "^4.0.1"
-=======
+    "tailwind-scrollbar": "^4.0.1",
     "lucide-react": "^0.479.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
     "tailwindcss": "^4.0.13"
->>>>>>> 652ede1424312e37b36a2a30f0b284e443eaf027
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -14,7 +14,7 @@ function Cart({img,item,price,removeItem}) {
                     <button className='bg-blue-700 text-white rounded-2xl h-10 w-20 font-bold'>Buy</button>
                     <button
                         className="bg-red-500 text-white rounded-2xl h-10 w-20 font-bold"
-                        onClick={() => removeItem(item)} // 🔥 Remove item from cart
+                        onClick={() => removeItem(item)} 
                     >
                         Remove
                     </button>

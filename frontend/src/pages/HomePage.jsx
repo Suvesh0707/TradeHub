@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#060606] text-white">
+    <>
+    <Navbar/>
+    <div className="flex flex-col h-[calc(100vh-80px)] bg-gradient-to-br from-black via-blue-950 to-black text-white">
       <main className="flex flex-col md:flex-row items-center justify-center flex-grow text-center md:text-left p-10">
         <div className="md:w-1/2 space-y-6">
           <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-400">
@@ -22,5 +25,7 @@ export default function HomePage() {
         </div>
       </main>
     </div>
+
+    </>
   );
 }

@@ -24,7 +24,6 @@ export default function LoginPage() {
 
     return (
       <div className="flex min-h-screen bg-[#060606] p-6">
-        {/* Left Container (Hidden on small screens) */}
         <div className="hidden md:flex md:w-1/2 flex-col items-start justify-center gap-6 p-10 bg-gradient-to-br from-pink-900 to-blue-800 rounded-l-2xl">
           <div className="flex items-center gap-3 text-white text-2xl font-bold">
             TradeHub
@@ -34,7 +33,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Right Container (Full width on small screens) */}
         <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center rounded-2xl md:rounded-r-2xl">
           <div className="w-full max-w-sm p-8">
             <h2 className="text-3xl font-bold text-white text-center mb-3">Welcome Back!</h2>

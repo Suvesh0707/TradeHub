@@ -10,39 +10,34 @@ export default function SignupPage() {
 
   const submit = async (e) => {
     e.preventDefault();
-
-    // ✅ Debug: Log values before sending request
     console.log("Submitting:", { name, email, password });
 
     if (!name || !email || !password) {
-      console.error("❌ Error: All fields are required!");
+      console.error(" Error: All fields are required!");
       return;
     }
 
     try {
-      // ✅ Check if backend expects JSON
       const response = await axios.post(
         "http://localhost:8000/api/v1/register",
-        { name, email, password }, // Sending JSON
+        { name, email, password }, 
         {
           withCredentials: true,
-          headers: { "Content-Type": "application/json" }, // Explicit JSON type
+          headers: { "Content-Type": "application/json" },
         }
       );
 
-      console.log("✅ Signup Successful:", response.data);
+      console.log(" Signup Successful:", response.data);
 
-      // ✅ Ensure navigation runs properly
       setTimeout(() => navigate("/homepage"), 500);
     } catch (error) {
       console.error(
-        "❌ Signup Error:",
+        "Signup Error:",
         error.response ? error.response.data : error.message
       );
 
-      // ✅ Log backend response details
       if (error.response) {
-        console.error("📢 Backend Response:", error.response.data);
+        console.error(" Backend Response:", error.response.data);
       }
     }
   };

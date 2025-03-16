@@ -1,33 +1,80 @@
-import React from 'react';
+import { LayoutDashboardIcon, Search, X } from "lucide-react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function Navbar(props) {
+function Navbar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/v1/logout", {
+        withCredentials: true
+    });
+    alert("Logout successful!");
+    navigate("/login"); 
+      
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Failed to logout. Please try again.");
+    }
+  };
+
   return (
-    <div className="h-20 bg-[#0c162c] flex items-center px-6 justify-between">
-      <div className="flex items-center gap-4">
-        <img src="https://i.pinimg.com/736x/cd/12/b6/cd12b6abe71866fd0d989ba932ec2f94.jpg" alt="Logo" className="h-10 w-10 rounded-3xl" />
-        <h1 className="font-bold text-white text-3xl">Trade Hub</h1>
+    <div className="relative">
+      <div className="h-20 bg-gradient-to-r from-[#092f86] to-[#a2a2a2] flex items-center px-6 justify-between shadow-md sticky top-0 z-50">
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <img
+            src="https://i.pinimg.com/736x/cd/12/b6/cd12b6abe71866fd0d989ba932ec2f94.jpg"
+            alt="Logo"
+            className="h-10 w-10 md:h-12 md:w-12 rounded-full border-2 border-[#00bcd4] p-1"
+          />
+          <h1 className="font-bold text-white text-3xl hidden md:block">Trade Hub</h1>
+        </div>
+
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <input
+            className="bg-transparent text-black font-bold px-3 py-1 w-40 md:w-64 border-b-2 border-transparent focus:border-[#000000] focus:outline-none focus:ring-0 rounded-lg transition-all duration-300"
+            placeholder="Search here"
+            type="text"
+          />
+
+          <Search
+            className="text-white h-8 w-8 p-2 rounded-full bg-[#000000] hover:bg-[#04b3bb] transition-all duration-300 cursor-pointer"
+          />
+
+          <button
+            className={`flex gap-3 items-center text-xl font-medium text-[#000000] hover:text-white px-10 cursor-pointer transition-all duration-300`}
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <LayoutDashboardIcon />
+            <span className="hidden md:inline">Dashboard</span>
+          </button>
+        </div>
       </div>
 
-      {/* Search Input */}
-      <div className='flex flex-row '>
-
-      <input
-        className=" bg-white text-black px-4 py-2  sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-l-3xl
-        "
-        placeholder="Search here"
-        type="text"
-        /><svg className='bg-white h-10 w-15 rounded-r-3xl  py-2' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <div className="flex items-center text-center">
-        {props.isLoggedin ? (
-            <h2 className=" text-2xl font-bold text-amber-50 px-10">
-            <span className="text-blue-500">Dashbord</span>
-          </h2>
-        ) : (
-            <h2 className="text-blue-500 px-10 text-2xl font-bold">
-            Login
-          </h2>
-        )}
+      {/* Sidebar */}
+      <div
+         className={`fixed top-0 right-0 h-screen w-1/4 bg-gradient-to-br from-[#000428] to-[#004e92] shadow-2xl p-5 z-50 text-white transform ${
+          isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <div className="flex justify-end mb-4">
+          <X
+            className="text-[#00bcd4] h-8 w-8 cursor-pointer hover:text-red-500 transition-all duration-300"
+            onClick={() => setIsSidebarOpen(false)}
+          />
         </div>
+
+        <h2 className="text-2xl font-bold mb-4 text-[#fff]">Dashboard Menu</h2>
+        <ul className="space-y-4">
+          <li><Link to="/productcard" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Home</Link></li>
+          <li><Link to="/cartpage" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Cart</Link></li>
+          <li><Link to="/uploadproduct" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Add Products</Link></li>
+          <li><Link to="/myproduct" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Your Products</Link></li>
+          <li><button onClick={handleLogout} className="cursor-pointer text-red-500 hover:text-red-400 transition-all">Logout</button></li>
+        </ul>
       </div>
     </div>
   );

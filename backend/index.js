@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 import { connectDb } from "./db/index.js"
 import cookieParser from "cookie-parser"
 import cors from 'cors'
+import path from 'path';
+import url from 'url';
 
 dotenv.config({})
 const app = express()
@@ -19,8 +21,17 @@ app.use(cors({
     allowedHeaders: "Content-Type,Authorization" 
 }));
 
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 import userRoutes from "./routes/user.routes.js"
 app.use("/api/v1", userRoutes)
+
+import productRoutes from "./routes/product.routes.js"
+app.use("/api/v1", productRoutes)
+
+import cartRoutes from "./routes/cart.routes.js"
+app.use("/api/v1", cartRoutes);
 
 const port = process.env.PORT || 3000
 connectDb()

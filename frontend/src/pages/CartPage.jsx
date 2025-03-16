@@ -10,10 +10,11 @@ function CartPage() {
     const fetchCartData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/getcartinfo", {
-          withCredentials: true,  
+          withCredentials: true,
         });
-
-        setCartItems(response.data.cart.products); 
+  
+        const validItems = response.data.cart.products.filter(product => product.productId);
+        setCartItems(validItems);
       } catch (error) {
         console.error("Error fetching cart data:", error);
         alert("Failed to fetch cart data. Please try again.");
@@ -21,9 +22,10 @@ function CartPage() {
         setLoading(false);
       }
     };
-
+  
     fetchCartData();
   }, []);
+  
 
   const removeItem = async (productId) => {
     try {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
 
 export default function MyProductsPage() {
   const [products, setProducts] = useState([]);
@@ -13,9 +14,11 @@ export default function MyProductsPage() {
             withCredentials: true 
         });
         setProducts(response.data);
+        if (response.data.length === 0) {
+            toast.warn(" Add Product First.");
+          }
       } catch (error) {
         console.error("Error fetching products:", error);
-        alert("Failed to fetch products. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -30,9 +33,10 @@ export default function MyProductsPage() {
         withCredentials: true
       });
       setProducts(products.filter((product) => product._id !== productId));
+      toast.success("Successfully Removed Product")
     } catch (error) {
       console.error("Error deleting product:", error);
-      alert("Failed to delete product. Please try again.");
+      toast.error("Failed to delete product. Please try again.");
     }
   };
 

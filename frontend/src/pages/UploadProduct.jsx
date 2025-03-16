@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
+import { toast } from 'react-toastify';
 
 export default function UploadProduct() {
     const [productData, setProductData] = useState({
@@ -49,10 +50,10 @@ export default function UploadProduct() {
             });
 
             console.log('Product Uploaded:', response.data);
-            alert(' Product uploaded successfully!');
+            toast.success(' Product uploaded successfully!');
         } catch (error) {
             console.error('Upload Error:', error.response?.data || error.message);
-            alert(` Error: ${error.response?.data?.error || 'Failed to upload product'}`);
+            toast.error(` Error: ${error.response?.data?.error || 'Failed to upload product'}`);
         } finally {
             setLoading(false);
         }

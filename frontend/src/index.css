@@ -8,3 +8,11 @@
     scrollbar-width: none;
 }
 
+@keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s step-start infinite;
+  }
+

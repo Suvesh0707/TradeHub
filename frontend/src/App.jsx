@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import ProductCard from './pages/ProductCard'
 import UploadProduct from './pages/UploadProduct'
 import MyProductsPage from './pages/MyProduct'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -22,6 +24,18 @@ function App() {
         <Route path='/myproduct' element={<MyProductsPage/>}></Route>
       </Routes>
     </Router>
+
+    <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -17,7 +18,7 @@ function CartPage() {
         setCartItems(validItems);
       } catch (error) {
         console.error("Error fetching cart data:", error);
-        alert("Failed to fetch cart data. Please try again.");
+        toast.warn("Cart is Empty, Add products in cart");
       } finally {
         setLoading(false);
       }
@@ -34,15 +35,17 @@ function CartPage() {
         data: { productId },
         withCredentials: true,
       });
+      
   
       if (response.status === 200) {
         setCartItems((prevItems) => prevItems.filter((product) => product.productId._id !== productId));
+        toast.success("Successfully removed item from cart")
       } else {
-        alert("Failed to remove item. Please try again.");
+        toast.error("Failed to remove item. Please try again.");
       }
     } catch (error) {
       console.error("Error removing item:", error);
-      alert("Error removing item from cart. Please try again.");
+      toast.error("Error while removing item from cart. Please try again.");
     }
   };
  

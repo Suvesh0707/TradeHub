@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ export default function SignupPage() {
           headers: { "Content-Type": "application/json" },
         }
       );
-
+      toast.success('Signup successful! Welcome to TradeHub!')
       console.log(" Signup Successful:", response.data);
 
       setTimeout(() => navigate("/homepage"), 500);

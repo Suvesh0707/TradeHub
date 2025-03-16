@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'; 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ export default function LoginPage() {
             { email, password },
             { withCredentials: true }
           );
+          toast.success("Login Successful")
           console.log("Login Successful:", response.data);
           navigate("/homepage")
         } catch (error) {

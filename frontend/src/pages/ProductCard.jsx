@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState([]);
@@ -17,9 +18,11 @@ export default function ProductGrid() {
         );
 
         setProducts(response.data);
+        if (response.data.length === 0) {
+            toast.info(" Currently there are no products available.");
+          }
       } catch (error) {
         console.error("Error fetching products:", error);
-        alert("Failed to fetch products. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -36,7 +39,7 @@ export default function ProductGrid() {
         { withCredentials: true }
       );
 
-      alert("Product added to cart!");
+      toast.success("Product added to cart!");
     } catch (error) {
       console.error("Error adding product to cart:", error);
       alert("Failed to add product to cart. Please try again.");

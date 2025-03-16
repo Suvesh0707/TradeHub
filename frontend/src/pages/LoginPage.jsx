@@ -1,8 +1,31 @@
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import axios from 'axios';
+
 export default function LoginPage() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate()
+
+    const submit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post( 
+            "http://localhost:8000/api/v1/login",
+            { email, password },
+            { withCredentials: true }
+          );
+          console.log("Login Successful:", response.data);
+          navigate("/homepage")
+        } catch (error) {
+          console.error("Login Error:", error.response ? error.response.data : error.message);
+        }
+    };
+
     return (
       <div className="flex min-h-screen bg-[#060606] p-6">
-        <div className="w-1/2 flex flex-col items-start justify-center gap-6 p-10 bg-gradient-to-br from-pink-900 to-blue-800 rounded-l-2xl">
+        {/* Left Container (Hidden on small screens) */}
+        <div className="hidden md:flex md:w-1/2 flex-col items-start justify-center gap-6 p-10 bg-gradient-to-br from-pink-900 to-blue-800 rounded-l-2xl">
           <div className="flex items-center gap-3 text-white text-2xl font-bold">
             TradeHub
           </div>
@@ -11,12 +34,13 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="w-1/2 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center rounded-r-2xl">
+        {/* Right Container (Full width on small screens) */}
+        <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center rounded-2xl md:rounded-r-2xl">
           <div className="w-full max-w-sm p-8">
             <h2 className="text-3xl font-bold text-white text-center mb-3">Welcome Back!</h2>
             <p className="text-gray-400 text-center mb-6">Login to continue</p>
             
-            <form className="space-y-4">
+            <form onSubmit={submit} className="space-y-4">
               <div>
                 <label htmlFor="email" className="text-gray-400">Email</label>
                 <input
@@ -24,6 +48,9 @@ export default function LoginPage() {
                   type="email"
                   placeholder="Email"
                   className="w-full p-3 bg-gray-800 rounded-lg text-white outline-none focus:ring-2 focus:ring-blue-400"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
 
@@ -34,6 +61,9 @@ export default function LoginPage() {
                   type="password"
                   placeholder="Password"
                   className="w-full p-3 bg-gray-800 rounded-lg text-white outline-none focus:ring-2 focus:ring-blue-400"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
 

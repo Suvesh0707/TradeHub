@@ -74,6 +74,8 @@ function Navbar() {
           <li><Link to="/cartpage" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Cart</Link></li>
           <li><Link to="/uploadproduct" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Add Products</Link></li>
           <li><Link to="/myproduct" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Your Products</Link></li>
+          <li><Link to="/yourplacedorder" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">Placed Products</Link></li>
+          <li><Link to="/sellerdashboard" className="cursor-pointer text-white hover:text-[#00bcd4] transition-all">seller dashboard</Link></li>
           <li><button onClick={handleLogout} className="cursor-pointer text-red-500 hover:text-red-400 transition-all">Logout</button></li>
         </ul>
       </div>

@@ -36,6 +36,9 @@ app.use("/api/v1", cartRoutes);
 import otpRoutes from "./routes/otp.routes.js"
 app.use('/api/v1', otpRoutes);
 
+import orderRoutes from "./routes/order.routes.js";
+app.use("/api/v1", orderRoutes);
+
 console.log('EMAIL_USER:', process.env.EMAIL_USER);
 console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
 

@@ -11,7 +11,7 @@ const userSchema = new Schema(
         password:{
             type: String,
             required: [true, "password is required"]
-        }
+        }     
     },
     {timestamps: true})
 export const User = mongoose.model("User", userSchema)

@@ -14,7 +14,6 @@ export const uploadProduct = async(req, res)=>{
     }
 
     try {
-        // console.log(req.file)
         const productImage = await cloudinary.uploader.upload(image)
         console.log(productImage.public_id)
         await deleteFile(image)
@@ -39,7 +38,7 @@ export const getProduct = async(req, res)=>{
     try {
         const userProducts = await Product.find({ userId: req.user._id });
         res.status(200).json(userProducts);
-    } catch (error) {
+    } catch (error) {   
         res.status(500).json({ error: "Failed to fetch your products" });
     }
 }
@@ -49,7 +48,6 @@ export const deleteProduct = async(req, res)=>{
 
     try {
         const product = await Product.findById(productId)
-        // console.log(product.imageId)
         const deleteImage = await cloudinary.uploader.destroy(product.imageId, (error, result)=>{
             if (error) {
                 console.error('Error deleting file:', error);
@@ -81,3 +79,4 @@ export const getAllProducts = async (req, res) => {
         res.status(500).json({ error: "Failed to fetch all products" });
     }
 };
+

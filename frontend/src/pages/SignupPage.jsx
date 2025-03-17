@@ -11,37 +11,34 @@ export default function SignupPage() {
 
   const submit = async (e) => {
     e.preventDefault();
-    console.log("Submitting:", { name, email, password });
 
     if (!name || !email || !password) {
-      console.error(" Error: All fields are required!");
-      return;
+        toast.error("All fields are required!");
+        return;
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/register",
-        { name, email, password }, 
-        {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      toast.success('Signup successful! Welcome to TradeHub!')
-      console.log(" Signup Successful:", response.data);
+        const response = await axios.post("http://localhost:8000/api/v1/sendotp", {
+            name,
+            email,
+            password,
+        });
 
-      setTimeout(() => navigate("/homepage"), 500);
+        toast.success("OTP sent successfully! Please check your email.");
+        localStorage.setItem("signupEmail", email);
+        navigate("/otp"); 
     } catch (error) {
-      console.error(
-        "Signup Error:",
-        error.response ? error.response.data : error.message
-      );
-
-      if (error.response) {
-        console.error(" Backend Response:", error.response.data);
-      }
+        const errorMsg = error.response?.data?.error || "Signup failed. Try again!";
+        
+        if (errorMsg === "Account already exists, please login.") {
+            toast.error(errorMsg);
+            navigate("/login"); 
+        } else {
+            toast.error(errorMsg);
+        }
     }
-  };
+};
+
 
   return (
     <div className="flex min-h-screen bg-[#060606] p-6">
@@ -113,19 +110,7 @@ export default function SignupPage() {
               Sign Up
             </button>
           </form>
-          <div className="mt-6 flex items-center gap-2">
-            <div className="flex-grow border-t border-gray-600"></div>
-            <span className="text-gray-400">OR</span>
-            <div className="flex-grow border-t border-gray-600"></div>
-          </div>
-          <button className="mt-4 w-full flex items-center justify-center gap-3 bg-white text-black py-3 rounded-lg font-bold shadow-md hover:bg-gray-200">
-            <img
-              src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo.png"
-              alt="Google Logo"
-              className="h-5 w-5"
-            />
-            Continue with Google
-          </button>
+
           <div className="text-center text-gray-400 mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-500 hover:underline font-bold">

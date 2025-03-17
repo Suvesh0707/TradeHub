@@ -10,35 +10,35 @@ export default function ProductGrid() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#060606] p-10">
+        <div className="min-h-screen bg-gradient-to-br from-black via-blue-950 to-black p-10">
             <h1 className="text-white text-4xl font-extrabold text-center mb-8 tracking-wider">Explore Our Products</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 {products.map((product) => (
                     <div 
                         key={product.id} 
-                        className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-5 shadow-lg border border-gray-800 hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                        className="bg-gray-900 rounded-2xl p-5 shadow-lg border border-gray-800 hover:shadow-2xl hover:scale-105 transition-all duration-300"
                     >
                         <div className="relative">
                             <img 
                                 src={product.image}
                                 alt={product.name}
-                                className="w-full h-48 object-cover rounded-lg border border-gray-700"
+                                className="w-full h-48 object-cover rounded-lg border border-gray-800"
                             />
                         </div>
 
                         <div className="mt-4 text-white">
                             <h3 className="text-lg font-bold truncate">{product.name}</h3>
-                            <p className="text-blue-400 font-extrabold text-lg">₹{product.price}</p>
+                            <p className="text-green-500 font-extrabold text-2xl">₹{product.price}</p>
                             <div className="text-gray-400 text-sm mt-1">'Unknown Location'</div>
                             <p className="text-gray-500 text-xs mt-1">Just Now</p>
 
                             {/* Buttons Section */}
                             <div className="flex gap-3 mt-4">
-                                <button className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-bold tracking-wide transition-all">
+                                <button className="flex-1 bg-gradient-to-tl from-blue-950 to-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-bold tracking-wide transition-all">
                                     Buy Now
                                 </button>
-                                <button className="flex-1 bg-transparent border border-blue-500 text-blue-400 py-2 rounded-lg font-bold hover:bg-blue-500 hover:text-white transition-all">
+                                <button className="flex-1 bg-transparent border border-green-500 text-green-500 py-2 rounded-lg font-bold hover:bg-gradient-to-tl from-green-950 to-green-500  hover:text-white transition-all">
                                     Add to Cart
                                 </button>
                             </div>

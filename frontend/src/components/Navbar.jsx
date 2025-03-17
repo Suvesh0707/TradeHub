@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import React from 'react';
 
 function Navbar(props) {
@@ -7,8 +8,6 @@ function Navbar(props) {
         <img src="https://i.pinimg.com/736x/cd/12/b6/cd12b6abe71866fd0d989ba932ec2f94.jpg" alt="Logo" className="h-10 w-10 rounded-3xl" />
         <h1 className="font-bold text-white text-3xl">Trade Hub</h1>
       </div>
-
-      {/* Search Input */}
       <div className='flex flex-row '>
 
       <input
@@ -16,7 +15,7 @@ function Navbar(props) {
         "
         placeholder="Search here"
         type="text"
-        /><svg className='bg-white h-10 w-15 rounded-r-3xl  py-2' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        /><Search className=' bg-white h-10 w-10 rounded-r-3xl p-2'/>
       <div className="flex items-center text-center">
         {props.isLoggedin ? (
             <h2 className=" text-2xl font-bold text-amber-50 px-10">

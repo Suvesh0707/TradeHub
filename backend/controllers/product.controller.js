@@ -1,8 +1,8 @@
 import { Product } from "../models/product.model.js";
-
+import cloudinary from "../utils/cloudinary.js";
 export const uploadProduct = async(req, res)=>{
     const {name, price, description, category} = req.body
-    const image = req.file ? `/uploads/${req.file.filename}`:'';
+    const image = req.file ? `${req.file.destination}${req.file.filename}`:'';
 
     if(!req.user || !req.user._id){
         return res.status(401).json({error:"Please login first to upload products"})
@@ -12,10 +12,13 @@ export const uploadProduct = async(req, res)=>{
     }
 
     try {
+        console.log(req.file)
+        const productImage = await cloudinary.uploader.upload(image)
+        // console.log(productImage)
         const newProduct = new Product({
             name,
             price,
-            image,
+            image: productImage.url,
             description,
             category,
             userId: req.user._id 

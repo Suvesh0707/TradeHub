@@ -34,6 +34,7 @@ import cartRoutes from "./routes/cart.routes.js"
 app.use("/api/v1", cartRoutes);
 
 const port = process.env.PORT || 3000
+
 connectDb()
 app.listen(port,()=>{
     console.log(`app is listening on port ${port}`)

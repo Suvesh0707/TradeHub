@@ -59,7 +59,7 @@ export default function MyProductsPage() {
             >
               <div className="relative">
                 <img
-                  src={`http://localhost:8000${product.image}`}
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-40 object-cover rounded-lg border border-gray-700"
                 />

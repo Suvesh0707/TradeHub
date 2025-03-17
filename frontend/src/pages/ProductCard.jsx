@@ -41,7 +41,7 @@ export default function ProductGrid() {
       toast.success("Product added to cart!");
     } catch (error) {
       console.error("Error adding product to cart:", error);
-      alert("Failed to add product to cart. Please try again.");
+      toast.error("Failed to add product to cart. Please try again.");
     }
   };
 

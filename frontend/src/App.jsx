@@ -10,6 +10,8 @@ import MyProductsPage from './pages/MyProduct'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OTPPage from './pages/Otp'
+import YourPlacedOrder from './pages/YourPlacedOrder'
+import SellerDashboard from './pages/SellerDashboard'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path='/uploadproduct' element={<UploadProduct/>}></Route>
         <Route path='/myproduct' element={<MyProductsPage/>}></Route>
         <Route path='/otp' element={<OTPPage/>}></Route>
+        <Route path='/yourplacedorder' element={<YourPlacedOrder/>}></Route>
+        <Route path='/sellerdashboard' element={<SellerDashboard/>}></Route>
       </Routes>
     </Router>
 

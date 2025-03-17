@@ -65,7 +65,7 @@ function CartPage() {
             <div key={index} className="flex flex-row w-full h-44 md:w-full m-3 p-6 bg-gray-900 rounded-3xl shadow-2xl transform transition-all hover:scale-105">
               <img
                 className="w-32 h-32 sm:w-40 sm:h-40 rounded-lg shadow-lg object-cover"
-                src={`http://localhost:8000${product.productId.image}`}
+                src={product.productId.image}
                 alt={`${product.productId.name} product image`}
               />
               <div className="flex flex-col justify-center m-5">
@@ -86,7 +86,7 @@ function CartPage() {
         )}
       </div>
       <div className="flex flex-col items-center md:w-1/2 flex-grow">
-        <div className="flex flex-col hidden md:block w-full h-auto m-3 p-6 text-white bg-gray-900 rounded-3xl shadow-2xl">
+        <div className="flex flex-col md:block w-full h-auto m-3 p-6 text-white bg-gray-900 rounded-3xl shadow-2xl">
           <div className="flex m-2 text-xl flex-row justify-evenly font-semibold font-sans">
             <h1>Product</h1>
             <h1>Price</h1>
@@ -96,7 +96,7 @@ function CartPage() {
             {cartItems.map((product, index) => (
               <div key={index} className="flex py-3 flex-row justify-between w-full">
                 <div className="flex items-center gap-4">
-                  <img src={`http://localhost:8000${product.productId.image}`} alt={product.productId.name} className="w-16 h-16 object-cover rounded-lg shadow-md" />
+                  <img src={product.productId.image} alt={product.productId.name} className="w-16 h-16 object-cover rounded-lg shadow-md" />
                   <span className="font-serif text-lg">{product.productId.name}</span>
                 </div>
                 <span className="text-xl font-semibold">{`Rs ${product.productId.price}`}</span>
@@ -105,7 +105,7 @@ function CartPage() {
           </div>
         </div>
         
-        <div className="flex flex-row w-full sticky bottom-0 justify-between font-semibold items-center p-6 m-1 h-16 text-xl md:w-full bg-gradient-to-tl from-blue-950 text-white to-blue-500 rounded-xl shadow-2xl">
+        <div className="flex flex-row w-full bottom-0 justify-between font-semibold items-center p-6 m-1 h-16 text-xl md:w-full bg-gradient-to-tl from-blue-950 text-white to-blue-500 rounded-xl shadow-2xl">
           <h1>Total Amount</h1>
           <h1>{`Rs ${totalPrice}`} /-</h1>
         </div>

@@ -20,6 +20,10 @@ const productSchema = new Schema(
         userId:{
             type:mongoose.Schema.Types.ObjectId,
             ref: "User"
+        },
+        imageId:{
+            type: String,
+            
         }
     },
     {timestamps: true})

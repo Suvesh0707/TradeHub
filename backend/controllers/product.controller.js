@@ -1,8 +1,10 @@
 import { Product } from "../models/product.model.js";
+import cloudinary from "../utils/cloudinary.js";
+import { deleteFile } from "../utils/deleteFiles.js";
 
 export const uploadProduct = async(req, res)=>{
     const {name, price, description, category} = req.body
-    const image = req.file ? `/uploads/${req.file.filename}`:'';
+    const image = req.file ? `${req.file.destination}${req.file.filename}`:'';
 
     if(!req.user || !req.user._id){
         return res.status(401).json({error:"Please login first to upload products"})
@@ -12,10 +14,15 @@ export const uploadProduct = async(req, res)=>{
     }
 
     try {
+        // console.log(req.file)
+        const productImage = await cloudinary.uploader.upload(image)
+        console.log(productImage.public_id)
+        await deleteFile(image)
         const newProduct = new Product({
             name,
             price,
-            image,
+            image: productImage.url,
+            imageId: productImage?.public_id,
             description,
             category,
             userId: req.user._id 
@@ -42,6 +49,15 @@ export const deleteProduct = async(req, res)=>{
 
     try {
         const product = await Product.findById(productId)
+        // console.log(product.imageId)
+        const deleteImage = await cloudinary.uploader.destroy(product.imageId, (error, result)=>{
+            if (error) {
+                console.error('Error deleting file:', error);
+              } else {
+                console.log('Delete result:', result);
+              }
+        })
+        console.log(deleteImage)
 
         if(!product){
             return res.status(404).json({ error: "Product not found" });

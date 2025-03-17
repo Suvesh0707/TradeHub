@@ -41,6 +41,7 @@ console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
 
 
 const port = process.env.PORT || 3000
+
 connectDb()
 app.listen(port,()=>{
     console.log(`app is listening on port ${port}`)

@@ -5,7 +5,7 @@ const protectRoute =async (req, res, next) =>{
 
     try {
         const token = req.cookies.token
-        console.log(req)
+        // console.log(req)
         if (!token) {
             return res.status(401).json({ msg: "No token, authorization denied" })
         }
@@ -19,7 +19,7 @@ const protectRoute =async (req, res, next) =>{
             return res.status(401).json({ msg: "User not found" })
             }
         req.user = user
-        console.log(user)
+        // console.log(user)
         next()
     } catch (error) {
         console.log("Error in ProtectionRoute middleware", error.message)

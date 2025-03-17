@@ -16,7 +16,6 @@ export default function ProductGrid() {
             withCredentials: true,
           }
         );
-
         setProducts(response.data);
         if (response.data.length === 0) {
             toast.info(" Currently there are no products available.");
@@ -65,7 +64,7 @@ export default function ProductGrid() {
             >
               <div className="relative">
                 <img
-                  src={`http://localhost:8000${product.image}`}
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-40 object-cover rounded-lg border border-gray-700"
                 />

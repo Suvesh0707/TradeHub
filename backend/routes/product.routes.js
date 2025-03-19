@@ -2,7 +2,6 @@ import express from 'express';
 import multer from 'multer';
 import { uploadProduct, deleteProduct, getProduct, getAllProducts, confirmProductController, cancelProductController } from '../controllers/product.controller.js';
 import protectRoute from '../middlewares/protect.route.js';
-import { confirmProductController, cancelProductController } from '../utils/mailer.js';
 
 const router = express.Router();
 

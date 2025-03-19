@@ -31,9 +31,9 @@ export const confirmProduct = async (email, productId) => {
         subject: 'Your product has been confirmed',
         html: `<p>
         <h1>Your Product has been confirmed</h1>
-        <p>Product Image: ${product.image}</p>
-        <p>Product Name: ${product.name}</p>
-        <p>Product Price: ${product.price}</p>
+        <img src=${product.image} alt=${product.name} width="300px" />
+        <h3>Product Name: ${product.name}</h3>
+        <h3>Product Price: ${product.price}</h3>
         </>`
     };
 
@@ -50,7 +50,7 @@ export const cancelProduct = async (email, productId) => {
         html: `<p>
         <h1>Product Canceled</h1>
         <p>The Product which you have been try to buy, the seller has cancelled you request.</p>
-        <p>Product Image: ${product.image}</p>
+        <img src=${product.image} alt=${product.name} width="300px"/>
         <p>Product Name: ${product.name}</p>
         <p>Product Price: ${product.price}</p>
         </>`
@@ -58,8 +58,3 @@ export const cancelProduct = async (email, productId) => {
 
     await transporter.sendMail(mailOptions);
 };
-
-<<<<<<< HEAD
-
-=======
->>>>>>> b69928291fc77935226b2d09fb8c5be927d78c8e

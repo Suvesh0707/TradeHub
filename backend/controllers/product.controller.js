@@ -108,19 +108,13 @@ export const cancelProductController = async(req,res)=>{
         }
         await cancelProduct(email, productId)
         return res.status(201).json({
-            message:"Product is confirmed",
+            message:"Product is cancelled",
             success: true
         })
     } catch (error) {
         res.status(400).json({
             message: error.message,
             success: false
-<<<<<<< HEAD
-  })
-}
-}
-=======
         })
     }
 }
->>>>>>> b69928291fc77935226b2d09fb8c5be927d78c8e

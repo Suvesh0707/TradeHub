@@ -80,3 +80,40 @@ export const getAllProducts = async (req, res) => {
     }
 };
 
+export const confirmProductController = async(req,res)=>{
+    try {
+        const {productId, email} = await req.body;
+        if(!productId || !email){
+            throw new Error("Product id and Email is required")
+        }
+        await confirmProduct(email, productId)
+        return res.status(201).json({
+            message:"Product is confirmed",
+            success: true
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+            success: false
+        })
+    }
+}
+
+export const cancelProductController = async(req,res)=>{
+    try {
+        const {productId, email} = await req.body;
+        if(!productId || !email){
+            throw new Error("Product id and Email is required")
+        }
+        await cancelProduct(email, productId)
+        return res.status(201).json({
+            message:"Product is confirmed",
+            success: true
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+            success: false
+  })
+}
+}

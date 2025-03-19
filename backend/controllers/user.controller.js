@@ -76,3 +76,12 @@ export const logoutUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
+export const checkAuth = async(req, res)=>{
+    try {
+      res.status(200).json(req.user)
+    } catch (error) {
+     console.log("User is not login")
+     res.status(401).json(new ApiResponse(401, null, "User is not logged in"))
+    }
+ }

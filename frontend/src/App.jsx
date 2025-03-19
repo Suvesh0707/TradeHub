@@ -14,6 +14,7 @@ import YourPlacedOrder from './pages/YourPlacedOrder'
 import SellerDashboard from './pages/SellerDashboard'
 
 function App() {
+  const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
   return (
     <>
     <Router>

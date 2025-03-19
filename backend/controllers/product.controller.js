@@ -1,6 +1,7 @@
 import { Product } from "../models/product.model.js";
 import cloudinary from "../utils/cloudinary.js";
 import { deleteFile } from "../utils/deleteFiles.js";
+import { cancelProduct, confirmProduct } from "../utils/mailer.js";
 
 export const uploadProduct = async(req, res)=>{
     const {name, price, description, category} = req.body
@@ -80,3 +81,40 @@ export const getAllProducts = async (req, res) => {
     }
 };
 
+export const confirmProductController = async(req,res)=>{
+    try {
+        const {productId, email} = await req.body;
+        if(!productId || !email){
+            throw new Error("Product id and Email is required")
+        }
+        await confirmProduct(email, productId)
+        return res.status(201).json({
+            message:"Product is confirmed",
+            success: true
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+            success: false
+        })
+    }
+}
+
+export const cancelProductController = async(req,res)=>{
+    try {
+        const {productId, email} = await req.body;
+        if(!productId || !email){
+            throw new Error("Product id and Email is required")
+        }
+        await cancelProduct(email, productId)
+        return res.status(201).json({
+            message:"Product is confirmed",
+            success: true
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+            success: false
+        })
+    }
+}

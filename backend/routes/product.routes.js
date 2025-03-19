@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { uploadProduct, deleteProduct, getProduct, getAllProducts } from '../controllers/product.controller.js';
+import { uploadProduct, deleteProduct, getProduct, getAllProducts, confirmProductController, cancelProductController } from '../controllers/product.controller.js';
 import protectRoute from '../middlewares/protect.route.js';
 
 const router = express.Router();
@@ -15,5 +15,8 @@ router.post('/uploadproducts', protectRoute, upload.single('image'), uploadProdu
 router.get('/getproducts', protectRoute, getProduct);                  
 router.get('/getallproducts', protectRoute, getAllProducts);                  
 router.delete('/deleteproducts/:productId', protectRoute, deleteProduct);     
+router.route('/confirm-product').post(confirmProductController)
+router.route('/cancel-product').post(cancelProductController)
+
 
 export default router;

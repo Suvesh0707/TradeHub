@@ -59,7 +59,7 @@ export default function LoginPage() {
                 />
               </div>
 
-              <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-bold tracking-wide">
+              <button className="cursor-pointer w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-bold tracking-wide">
                 Login
               </button>
             </form>
@@ -70,14 +70,14 @@ export default function LoginPage() {
               <div className="flex-grow border-t border-gray-600"></div>
             </div>
 
-            <button className="mt-4 w-full flex items-center justify-center gap-3 bg-white text-black py-3 rounded-lg font-bold shadow-md hover:bg-gray-200">
+            {/* <button disabled className="mt-4 w-full flex items-center justify-center gap-3 bg-slate-800 text-black py-3 rounded-lg font-bold shadow-md ">
               <img
                 src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo.png"
                 alt="Google Logo"
                 className="h-5 w-5"
               />
               Continue with Google
-            </button>
+            </button> */}
 
             <div className="text-center text-gray-400 mt-4">
               Don't have an account?{' '}

@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-
+import { Product } from '../models/product.model.js';
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -59,4 +59,7 @@ export const cancelProduct = async (email, productId) => {
     await transporter.sendMail(mailOptions);
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b69928291fc77935226b2d09fb8c5be927d78c8e

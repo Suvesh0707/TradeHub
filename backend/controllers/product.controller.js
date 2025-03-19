@@ -1,6 +1,7 @@
 import { Product } from "../models/product.model.js";
 import cloudinary from "../utils/cloudinary.js";
 import { deleteFile } from "../utils/deleteFiles.js";
+import { cancelProduct, confirmProduct } from "../utils/mailer.js";
 
 export const uploadProduct = async(req, res)=>{
     const {name, price, description, category} = req.body
@@ -114,6 +115,12 @@ export const cancelProductController = async(req,res)=>{
         res.status(400).json({
             message: error.message,
             success: false
+<<<<<<< HEAD
   })
 }
 }
+=======
+        })
+    }
+}
+>>>>>>> b69928291fc77935226b2d09fb8c5be927d78c8e

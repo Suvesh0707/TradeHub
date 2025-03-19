@@ -2,7 +2,7 @@ import React from 'react'
 import CartPage from './pages/CartPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ProductCard from './pages/ProductCard'
 import UploadProduct from './pages/UploadProduct'
@@ -15,20 +15,22 @@ import SellerDashboard from './pages/SellerDashboard'
 
 function App() {
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
+  const navigate = useNavigate()
   return (
     <>
     <Router>
       <Routes>
         <Route path='/' element={<SignupPage/>}></Route>
-        <Route path='/cartpage' element={<CartPage/>}></Route>
         <Route path='/login' element={<LoginPage/>}></Route>
-        <Route path='/homepage' element={<HomePage/>}></Route>
-        <Route path='/productcard' element={<ProductCard/>}></Route>
-        <Route path='/uploadproduct' element={<UploadProduct/>}></Route>
-        <Route path='/myproduct' element={<MyProductsPage/>}></Route>
         <Route path='/otp' element={<OTPPage/>}></Route>
-        <Route path='/yourplacedorder' element={<YourPlacedOrder/>}></Route>
-        <Route path='/sellerdashboard' element={<SellerDashboard/>}></Route>
+        
+        <Route path='/cartpage' element={authUser ?<CartPage/> :navigate("/login") }/>
+        <Route path='/homepage' element={authUser ?<HomePage/>: navigate("/login")}></Route>
+        <Route path='/productcard' element={authUser ?<ProductCard/> : navigate("/login")}></Route>
+        <Route path='/uploadproduct' element={authUser?<UploadProduct/>: navigate("/login")}></Route>
+        <Route path='/myproduct' element={authUser? <MyProductsPage/>: navigate("/login")}></Route>
+        <Route path='/yourplacedorder' element={authUser ? <YourPlacedOrder/>: navigate("/login")}></Route>
+        <Route path='/sellerdashboard' element={authUser ?<SellerDashboard/>: navigate("/login")}></Route>
       </Routes>
     </Router>
 

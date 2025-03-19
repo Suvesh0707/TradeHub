@@ -23,3 +23,4 @@ export const sendVerificationEmail = async (email, otp) => {
 
     await transporter.sendMail(mailOptions);
 };
+

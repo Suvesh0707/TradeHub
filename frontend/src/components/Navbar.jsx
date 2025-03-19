@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import tradehub from "../assets/tradeHub.jpg"
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,7 +28,7 @@ function Navbar() {
       <div className="h-20 bg-gradient-to-r from-[#092f86] to-[#a2a2a2] flex items-center px-6 justify-between shadow-md sticky top-0 z-50">
         <div className="flex items-center gap-4 flex-shrink-0">
           <img
-            src="https://img.freepik.com/premium-vector/trade-candle-stick-logo-design-idea-trading-logo-design-idea_393879-2306.jpg?w=360"
+            src={tradehub}
             alt="Logo"
             className="h-10 w-10 md:h-12 md:w-12 rounded-full border-2 border-[#00bcd4] p-1"
           />

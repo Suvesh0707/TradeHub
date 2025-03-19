@@ -25,7 +25,7 @@ export default function OtpPage() {
 
       toast.success("OTP verified successfully! Redirecting...");
       localStorage.removeItem("signupEmail"); 
-      setTimeout(() => navigate("/homepage"), 1000);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
       toast.error("Invalid OTP. Please try again.");
       console.log(error)

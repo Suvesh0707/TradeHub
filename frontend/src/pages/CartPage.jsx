@@ -26,7 +26,7 @@ function CartPage() {
   
     fetchCartData();
   }, []);
-  
+
 
   const removeItem = async (productId) => {
     try {

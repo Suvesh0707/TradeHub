@@ -1,27 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom'; 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { useAuthStore } from '../store/UseAuth';
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { login} = useAuthStore()
     const navigate = useNavigate()
 
     const submit = async (e) => {
         e.preventDefault();
-        try {
-          const response = await axios.post( 
-            "http://localhost:8000/api/v1/login",
-            { email, password },
-            { withCredentials: true }
-          );
-          toast.success("Login Successful")
-          console.log("Login Successful:", response.data);
-          navigate("/homepage")
-        } catch (error) {
-          console.error("Login Error:", error.response ? error.response.data : error.message);
-        }
+        await login(email, password)
+        navigate("/homepage")
+       
     };
 
     return (

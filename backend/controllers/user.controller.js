@@ -85,3 +85,5 @@ export const checkAuth = async(req, res)=>{
      res.status(401).json(new ApiResponse(401, null, "User is not logged in"))
     }
  }
+
+ 

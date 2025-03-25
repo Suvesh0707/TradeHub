@@ -5,6 +5,7 @@ import { cancelProduct, confirmProduct } from "../utils/mailer.js";
 
 export const uploadProduct = async(req, res)=>{
     const {name, price, description, category} = req.body
+    console.log(req.body)
     const image = req.file ? `${req.file.destination}${req.file.filename}`:'';
 
     if(!req.user || !req.user._id){

@@ -18,7 +18,7 @@ export default function OtpPage() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/verifyotp", {
+      const response = await axios.post("https://tradehub-backend.up.railway.app/api/v1/verifyotp", {
         email,
         otp,
       });

@@ -11,7 +11,7 @@ export default function YourPlacedOrder() {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/v1/getuserorders",
+          "https://tradehub-backend.up.railway.app/api/v1/getuserorders",
           { withCredentials: true }
         );
         setOrders(response.data);

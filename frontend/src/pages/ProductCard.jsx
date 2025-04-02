@@ -20,7 +20,7 @@ export default function ProductGrid() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/v1/getallproducts",
+          "https://tradehub-backend.up.railway.app/api/v1/getallproducts",
           { withCredentials: true }
         );
         setProducts(response.data);
@@ -40,7 +40,7 @@ export default function ProductGrid() {
   const addToCart = async (productId) => {
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/addtocart", 
+        "https://tradehub-backend.up.railway.app/api/v1/addtocart", 
         { productId },
         { withCredentials: true }
       );
@@ -66,7 +66,7 @@ export default function ProductGrid() {
 
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/place-order",
+        "https://tradehub-backend.up.railway.app/api/v1/place-order",
         {
           productId: selectedProduct._id,
           ...formData

@@ -10,7 +10,7 @@ export default function MyProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/v1/getproducts', {
+        const response = await axios.get('https://tradehub-backend.up.railway.app/api/v1/getproducts', {
             withCredentials: true 
         });
         setProducts(response.data);
@@ -29,7 +29,7 @@ export default function MyProductsPage() {
 
   const deleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v1/deleteproducts/${productId}`, {
+      await axios.delete(`https://tradehub-backend.up.railway.app/api/v1/deleteproducts/${productId}`, {
         withCredentials: true
       });
       setProducts(products.filter((product) => product._id !== productId));

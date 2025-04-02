@@ -10,7 +10,7 @@ function CartPage() {
   useEffect(() => {
     const fetchCartData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/getcartinfo", {
+        const response = await axios.get("https://tradehub-backend.up.railway.app/api/v1/getcartinfo", {
           withCredentials: true,
         });
   
@@ -31,7 +31,7 @@ function CartPage() {
   const removeItem = async (productId) => {
     try {
       console.log("Removing product with ID:", productId); 
-      const response = await axios.delete("http://localhost:8000/api/v1/deletecartinfo", {
+      const response = await axios.delete("https://tradehub-backend.up.railway.app/api/v1/deletecartinfo", {
         data: { productId },
         withCredentials: true,
       });

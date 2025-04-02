@@ -11,7 +11,7 @@ export default function SellerDashboard() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/api/v1/checkauth", { withCredentials: true });
+        const { data } = await axios.get("https://tradehub-backend.up.railway.app/api/v1/checkauth", { withCredentials: true });
         setUserEmail(data.email);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -29,7 +29,7 @@ export default function SellerDashboard() {
       const fetchOrders = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:8000/api/v1/getAllOrders",
+            "https://tradehub-backend.up.railway.app/api/v1/getAllOrders",
             { withCredentials: true }
           );
           setOrders(response.data);
@@ -55,20 +55,20 @@ export default function SellerDashboard() {
       const { email, productId } = orderDetails;
 
       await axios.put(
-        "http://localhost:8000/api/v1/update-order-status",
+        "https://tradehub-backend.up.railway.app/api/v1/update-order-status",
         { orderId, status: newStatus },
         { withCredentials: true }
       );
 
       if (newStatus === "Confirmed") {
         await axios.post(
-          "http://localhost:8000/api/v1/confirm-product",
+          "https://tradehub-backend.up.railway.app/api/v1/confirm-product",
           { productId, email },
           { withCredentials: true }
         );
       } else if (newStatus === "Cancelled") {
         await axios.post(
-          "http://localhost:8000/api/v1/cancel-product",
+          "https://tradehub-backend.up.railway.app/api/v1/cancel-product",
           { productId, email },
           { withCredentials: true }
         );

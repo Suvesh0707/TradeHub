@@ -44,7 +44,7 @@ export default function UploadProduct() {
 
         try {
             setLoading(true);
-            const response = await axios.post('http://localhost:8000/api/v1/uploadproducts', formData, {
+            const response = await axios.post('https://tradehub-backend.up.railway.app/api/v1/uploadproducts', formData, {
                 withCredentials: true,
                 headers: { 'Content-Type': 'multipart/form-data' }
             });

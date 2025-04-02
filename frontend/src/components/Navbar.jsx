@@ -13,7 +13,7 @@ function Navbar() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/api/v1/checkauth", {
+        const { data } = await axios.get("https://tradehub-backend.up.railway.app/api/v1/checkauth", {
           withCredentials: true
         });
         setUserEmail(data.email); // Store the email in state
@@ -28,7 +28,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/v1/logout", {
+      await axios.post("https://tradehub-backend.up.railway.app/api/v1/logout", {
         withCredentials: true
       });
       toast.success("Logout successful!");

@@ -6,7 +6,7 @@ authUser: null,
 isCheckingAuth: true,
  checkAuth: async () => {
         try {
-            const res = await axios.post("https://tradehub-backend.up.railway.app/api/v1/checkauth");
+            const res = await axios.get("https://tradehub-backend.up.railway.app/api/v1/checkauth");
             set({ authUser: res.data });
         } catch (error) {
             console.log("Error in checkAuth:", error);
